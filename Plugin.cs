@@ -1,8 +1,8 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
+using CraftingImprove.Components;
 using CraftingImprove.Patcher;
 using HarmonyLib;
-using PerfectRandom.Sulfur.Core;
 using UnityEngine;
 
 namespace CraftingImprove;
@@ -18,7 +18,8 @@ public class Plugin : BaseUnityPlugin {
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         this.gameObject.hideFlags = HideFlags.HideAndDontSave;
         
-        Harmony.CreateAndPatchAll(typeof(CraftingManagerPatch));
+        var harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
+        harmony.PatchAll();
     }
 
     private void Start() {
@@ -29,5 +30,8 @@ public class Plugin : BaseUnityPlugin {
         } else {
             PluginGameObject = plugin;
         }
+        
+        PluginGameObject.AddComponent<CraftingHelper>();
+        PluginGameObject.AddComponent<InventoryHelper>();
     }
 }

@@ -8,7 +8,7 @@ namespace CraftingImprove.Patcher;
 [HarmonyPatch(typeof(CraftingManager), "Start")]
 public class CraftingManagerPatch {
     private static void Postfix(CraftingManager __instance) {
-        var component = Plugin.PluginGameObject.AddComponent<CraftingHelper>();
+        var component = Plugin.PluginGameObject.GetComponent<CraftingHelper>();
         component.enchantRecipes = __instance.enchantmentRecipes;
         component.cookingRecipes = __instance.cookingRecipes;
         component.genericRecipes = __instance.genericRecipes;

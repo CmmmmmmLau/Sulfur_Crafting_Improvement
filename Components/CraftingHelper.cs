@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using CraftingImprove.Util;
 using PerfectRandom.Sulfur.Core;
 using PerfectRandom.Sulfur.Core.Items;
 using UnityEngine;
 
 namespace CraftingImprove.Components;
 
-public class CraftingHelper : MonoBehaviour {
+public class CraftingHelper : PluginInstance<CraftingHelper> {
     public List<CraftingRecipe> genericRecipes { private get; set; }
     public List<CraftingRecipe> cookingRecipes { private get; set; }
     public List<CraftingRecipe> enchantRecipes { private get; set; }
